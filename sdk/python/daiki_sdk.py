@@ -67,7 +67,7 @@ class DaikiSDK:
             else:
                 print(f"Error: {error_msg}")
     
-    def send(self, event: str, params: Optional[Dict[str, Any]] = None,
+    def _send(self, event: str, params: Optional[Dict[str, Any]] = None,
              success_callback: Optional[Callable] = None,
              failure_callback: Optional[Callable] = None) -> None:
         """
@@ -94,21 +94,29 @@ class DaikiSDK:
         
         self._send_request(payload, success_callback, failure_callback)
     
-    """
-    App started event.
-    """
     def app_started(self, new_app_id: Optional[str] = None, 
                    params: Optional[Dict[str, Any]] = None,
                    success_callback: Optional[Callable] = None,
                    failure_callback: Optional[Callable] = None) -> None:
+        """
+        App started event.
+
+        Example:
+            daiki.app_started()
+            daiki.app_started('my-app-123')
+            daiki.app_started('my-app-123', {'user_id': 'user123'})
+        """
         if new_app_id:
             self.app_id = new_app_id
-        self.send('app_start', params, success_callback, failure_callback)
+        self._send('app_start', params, success_callback, failure_callback)
     
-    """
-    Custom app event.
-    """
     def event(self, event: str, event_values: Optional[Dict[str, Any]] = None,
               success_callback: Optional[Callable] = None,
               failure_callback: Optional[Callable] = None) -> None:
-        self.send(event, event_values, success_callback, failure_callback)
+        """
+        Custom app event.
+
+        Example:
+            daiki.event("ai_chat_started", {"llm": "chatgpt-o4", "mode": "app"})
+        """
+        self._send(event, event_values, success_callback, failure_callback)

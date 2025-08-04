@@ -26,13 +26,13 @@ daiki.event("ai_chat_started", {"llm": "chatgpt-o4", "mode": "app"})
 
 #### `DaikiSDK` Class
 
-##### `set_app_id(new_app_id: str)`
+#### `set_app_id(new_app_id: str)`
 Set the application ID.
 
-##### `app_started(new_app_id: Optional[str] = None, params: Optional[Dict] = None, success_callback: Optional[Callable] = None, failure_callback: Optional[Callable] = None)`
+#### `app_started(new_app_id: Optional[str] = None, params: Optional[Dict] = None, success_callback: Optional[Callable] = None, failure_callback: Optional[Callable] = None)`
 Send an app started event. If `new_app_id` is provided, it will be set as the current app ID.
 
-##### `event(event: str, event_values: Optional[Dict] = None, success_callback: Optional[Callable] = None, failure_callback: Optional[Callable] = None)`
+#### `event(event: str, event_values: Optional[Dict] = None, success_callback: Optional[Callable] = None, failure_callback: Optional[Callable] = None)`
 Send a custom event.
 Note that events are automatically grouped by the Daiki platform. Just make sure that equal events have the same name.
 
